@@ -1,5 +1,6 @@
 package com.example.tesgithub.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,7 +18,10 @@ import com.example.tesgithub.MainActivity;
 import com.example.tesgithub.Model.ToDoModel;
 import com.example.tesgithub.Utils.DatabaseHandler;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
 
@@ -43,6 +48,9 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
 
         holder.task.setText(item.getTask());
         holder.task.setChecked(toBoolean(item.getStatus()));
+
+        String formattedDate = formatDate(item.getCreatedAt());
+        holder.taskDate.setText("Task Dibuat  " + formattedDate);
 
         holder.task.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -74,7 +82,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
         return activity;
     }
 
-    public void deleteItem(int position){
+    public void deleteItem(int position) {
         ToDoModel item = todoList.get(position);
         db.deleteTask(item.getId());
         todoList.remove(position);
@@ -91,12 +99,20 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
         fragment.show(activity.getSupportFragmentManager(), AddNewTask.TAG);
     }
 
+    @SuppressLint("SimpleDateFormat")
+    private String formatDate(long timestamp) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy, HH:mm", Locale.getDefault());
+        return sdf.format(new Date(timestamp));
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
         CheckBox task;
+        TextView taskDate;
 
         ViewHolder(View view) {
             super(view);
             task = view.findViewById(R.id.todoCheckBox);
+            taskDate = view.findViewById(R.id.taskDate);
         }
     }
 }

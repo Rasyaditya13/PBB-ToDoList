@@ -1,8 +1,12 @@
 package com.example.tesgithub.Model;
 
 public class ToDoModel {
-    private int id,status;
+    private int id, status;
     private String task;
+    private long createdAt;
+
+    public ToDoModel() {
+    }
 
     public int getId() {
         return id;
@@ -26,5 +30,13 @@ public class ToDoModel {
 
     public void setTask(String task) {
         this.task = task;
+    }
+
+    public long getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(long createdAt) {
+        this.createdAt = createdAt;
     }
 }

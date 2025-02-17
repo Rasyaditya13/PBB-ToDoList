@@ -10,18 +10,30 @@
     android:layout_marginVertical="8dp">
 
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp">
 
-            <CheckBox
-                android:id="@+id/todoCheckBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:paddingStart="8dp"
-                android:checked="true"
-                tools:text="Mana saya tau saya kan ikan"/>
+        <!-- Checkbox untuk Task -->
+        <CheckBox
+            android:id="@+id/todoCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="8dp"
+            android:checked="false"
+            tools:text="Mana saya tau saya kan ikan"/>
+
+        <!-- Tanggal Pembuatan Task -->
+        <TextView
+            android:id="@+id/taskDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="12sp"
+            android:layout_below="@id/todoCheckBox"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            tools:text="Task Created 17 Feb 2025, 10:45"/>
 
     </RelativeLayout>
 
