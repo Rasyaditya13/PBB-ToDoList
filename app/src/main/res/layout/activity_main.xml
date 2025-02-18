@@ -39,7 +39,6 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:progressDrawable="@android:color/white"
             android:indeterminate="true" />
-
     </LinearLayout>
 
     <View
@@ -50,29 +49,50 @@
         android:background="@android:color/darker_gray" />
 
     <TextView
-        android:id="@+id/emptyStateText"
+        android:id="@+id/notCompletedHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/divider"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp"
-        android:text="No tasks available. Add a new task!"
-        android:textColor="@android:color/darker_gray"
-        android:visibility="gone"
-        android:textSize="18sp" />
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:text="Belum Selesai"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/tasksRecyclerView"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/notCompletedHeader"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:nestedScrollingEnabled="true"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:clipToPadding="false" />
+
+    <TextView
+        android:id="@+id/completedHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tasksRecyclerView"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:text="Selesai"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/completedRecyclerView"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_below="@id/divider"
+        android:layout_below="@id/completedHeader"
         android:layout_above="@id/fab"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:nestedScrollingEnabled="true"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
-        android:layout_marginTop="0px"
-        android:paddingTop="15px"
         android:clipToPadding="false" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -86,6 +106,5 @@
         android:src="@drawable/baseline_add_24"
         app:tint="@android:color/white"
         android:elevation="8dp" />
-
 
 </RelativeLayout>

@@ -1,7 +1,8 @@
 package com.example.tesgithub.Model;
 
 public class ToDoModel {
-    private int id, status;
+    private int id;
+    private int status;
     private String task;
     private long createdAt;
 
